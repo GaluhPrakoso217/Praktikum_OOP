@@ -4,8 +4,7 @@
  */
 package Tugas9;
 
-import Tugas6.*;
-import Tugas5.*;
+
 
 /**
  *

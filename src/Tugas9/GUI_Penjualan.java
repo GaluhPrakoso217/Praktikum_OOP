@@ -8,7 +8,9 @@ package Tugas9;
  *
  * @author Prakoso
  */
-import Tugas6.*;
+import javax.swing.JOptionPane;
+import java.util.Scanner;
+
 import java.util.ArrayList;
     import java.util.List;
     import javax.swing.JOptionPane;
@@ -209,18 +211,19 @@ public class GUI_Penjualan extends javax.swing.JFrame {
 
     private void simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Data Ditambahkan Ke tabel");
         DefaultTableModel dataModel = (DefaultTableModel)
         tablert.getModel();
         List list = new ArrayList<>();
         tablert.setAutoCreateColumnsFromModel(true);
-        Penjualan obj = new Penjualan();
-        obj.jenis = jjenis.getText();
-        obj.warna = jwarna.getText();
-        obj.harga = Integer.parseInt(jharga.getText());
-        obj.penjualan= Integer.parseInt(jsatuan.getText());
-        obj.lusin = Integer.parseInt(jlusin.getText());
-        obj.stok = Integer.parseInt(jstok.getText());
+        Penjualan obj = new Penjualan();   
+                try{      
+                if(jjenis.getText().isEmpty()||jwarna.getText().isEmpty()||jharga.getText().isEmpty()||jsatuan.getText().isEmpty()||jlusin.getText().isEmpty()|jstok.getText().isEmpty()){
+               obj.jenis = jjenis.getText();
+               obj.warna = jwarna.getText();
+               obj.harga = Integer.parseInt(jharga.getText());
+               obj.penjualan= Integer.parseInt(jsatuan.getText());
+               obj.lusin = Integer.parseInt(jlusin.getText());
+               obj.stok = Integer.parseInt(jstok.getText());
          list.add(obj.jenis);
          list.add(obj.warna);
          list.add(obj.harga);
@@ -229,9 +232,18 @@ public class GUI_Penjualan extends javax.swing.JFrame {
          list.add(obj.lusin);
          list.add(obj.lusinan());
          list.add(obj.total());
-         list.add(obj.jumlah());   
-        dataModel.addRow(list.toArray());
-        clear();        
+         list.add(obj.jumlah());
+                // Menambahkan baris baru ke model tabel menggunakan data dari ArrayList 'list'
+                dataModel.addRow(list.toArray());
+                // Memanggil fungsi 'clear' untuk membersihkan nilai dari komponen
+                clear();
+                // Menampilkan pesan dialog bahwa data telah ditambahkan ketabel
+                JOptionPane.showMessageDialog(rootPane,"Data Ditambahkan");
+            }
+        } catch(Exception a){
+            JOptionPane.showMessageDialog(rootPane,"Isikan Data!");
+        }
+
     }//GEN-LAST:event_simpanActionPerformed
 
     private void hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusActionPerformed
